@@ -23,7 +23,7 @@ public class LoginDealAction extends BaseAction{
 		param.put("account",request.getParameter("userId"));
 		param.put("password",request.getParameter("password"));
 		param.put("validCode",request.getParameter("validCode"));
-		param.put("correctCode", (String)httpSession.getAttribute("verifiCode"));
+		param.put("captcha", (String)httpSession.getAttribute("captcha"));
 		if(log.isInfoEnabled())log.info("参数："+JSONObject.toJSONString(param));
 		try {
 			userBiz.loginDeal(param);

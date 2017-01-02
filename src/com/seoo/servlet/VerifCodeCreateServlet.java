@@ -69,7 +69,7 @@ public class VerifCodeCreateServlet extends HttpServlet {
 			graphics.drawLine(0, 4*i, IMAGEWIDTH, 4*i);
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("verifiCode", verifiCode);
+		session.setAttribute("captcha", verifiCode);
 		if(log.isInfoEnabled())log.info("验证码====="+verifiCode);
 		graphics.dispose();//释放此图形的上下文以及它使用的所有系统资源
 		ImageIO.write(bufImage, "jpg", response.getOutputStream());//将图像资源放入响应中，输出到客户端

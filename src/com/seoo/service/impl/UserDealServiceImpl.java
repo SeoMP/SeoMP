@@ -20,7 +20,7 @@ public class UserDealServiceImpl implements UserDealService {
 			throw new CommonException("LOGIN","001","输入的用户名不存在！");
 		if(!StringUtils.equals(user.getaPassword(),loginParam.get("password")))
 			throw new CommonException("LOGIN","002","输入密码错误！");
-		if(!StringUtils.equalsIgnoreCase(loginParam.get("validCode"),loginParam.get("correctCode")))
+		if(!StringUtils.equalsIgnoreCase(loginParam.get("validCode"),loginParam.get("captcha")))
 			throw new CommonException("LOGIN","003","验证码输入有误！");
 	}
 	public UserDealDao getDao() {
