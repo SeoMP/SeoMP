@@ -1,9 +1,10 @@
 package com.seoo.action;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.alibaba.fastjson.JSONObject;
 import com.seoo.baseAction.BaseAction;
 import com.seoo.exception.CommonException;
 import com.seoo.service.UserDealService;
@@ -18,21 +19,17 @@ public class LoginDealAction extends BaseAction{
 
 	public void login(){
 		super.init();
-		PrintWriter write = null;
+		Map<String,String>  param = new HashMap<String,String>();
+		param.put("account",request.getParameter("userId"));
+		param.put("password",request.getParameter("password"));
+		param.put("validCode",request.getParameter("validCode"));
+		param.put("correctCode", (String)httpSession.getAttribute("verifiCode"));
+		if(log.isInfoEnabled())log.info("参数："+JSONObject.toJSONString(param));
 		try {
-			/*ApplicationContext springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);*/
-			//System.out.println("系统变量="+System.getProperty("MP.root"));
-			userBiz.saveOneUser();
-			write = response.getWriter();
-			write.write("Add one user success!");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			userBiz.loginDeal(param);
 		} catch (CommonException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
-			if(write != null)write.close();
 		}
 	}
 

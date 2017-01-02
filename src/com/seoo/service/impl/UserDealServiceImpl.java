@@ -2,22 +2,26 @@ package com.seoo.service.impl;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.lang.StringUtils;
 
-import com.seoo.action.LoginDealAction;
 import com.seoo.dao.UserDealDao;
 import com.seoo.exception.CommonException;
 import com.seoo.pojo.TblCommonUser;
 import com.seoo.service.UserDealService;
 
 public class UserDealServiceImpl implements UserDealService {
-	private static final Logger log = Logger.getLogger(LoginDealAction.class);
+	//private static final Logger log = Logger.getLogger(LoginDealAction.class);
 	private UserDealDao dao;
 	@Override
-	public String loginDeal(Map<String, Object> params) {
+	public void loginDeal(Map<String,String> loginParam) throws CommonException{
 		// TODO Auto-generated method stub
-		
-		return null;
+		TblCommonUser user = dao.queryUser(loginParam.get("account"));
+		if(user == null)
+			throw new CommonException("LOGIN","001","输入的用户名不存在！");
+		if(!StringUtils.equals(user.getaPassword(),loginParam.get("password")))
+			throw new CommonException("LOGIN","002","输入密码错误！");
+		if(!StringUtils.equalsIgnoreCase(loginParam.get("validCode"),loginParam.get("correctCode")))
+			throw new CommonException("LOGIN","003","验证码输入有误！");
 	}
 	public UserDealDao getDao() {
 		return dao;

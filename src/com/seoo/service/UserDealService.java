@@ -5,6 +5,6 @@ import java.util.Map;
 import com.seoo.exception.CommonException;
 
 public interface UserDealService {
-	public String loginDeal(Map<String,Object> params);
+	public void loginDeal(Map<String,String> loginParam) throws CommonException;
 	public void saveOneUser() throws CommonException;
 }

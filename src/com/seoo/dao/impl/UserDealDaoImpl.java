@@ -1,8 +1,5 @@
 package com.seoo.dao.impl;
 
-import java.util.List;
-import java.util.Map;
-
 import com.seoo.dao.BaseDaoSupport;
 import com.seoo.dao.UserDealDao;
 import com.seoo.pojo.TblCommonUser;
@@ -10,10 +7,9 @@ import com.seoo.pojo.TblCommonUser;
 public class UserDealDaoImpl extends BaseDaoSupport implements UserDealDao {
 
 	@Override
-	public List<?> queryUsers(Map<String, Object> params) {
+	public TblCommonUser queryUser(String userId) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		return this.getHibernateTemplate().get(TblCommonUser.class,userId);
 	}
 
 	@Override
