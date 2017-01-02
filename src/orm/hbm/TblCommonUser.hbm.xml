@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.seoo.pojo">
+    <class name="TblCommonUser"  table="tbl_common_user"  lazy="false">
+        <id name="aLoginId" type="java.lang.String">
+            <column name="aLoginId" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="aName" type="java.lang.String">
+            <column name="aName" length="50" />
+        </property>
+        <property name="aPassword" type="java.lang.String">
+            <column name="aPassword" length="36" />
+        </property>
+        <property name="aPosition" type="java.lang.String">
+            <column name="aPosition" length="2" />
+        </property>
+        <property name="aState" type="java.lang.String">
+            <column name="aState" length="1" >
+            	<comment>用户状态：0-禁用 1-启用  9-删除</comment>
+            </column>
+        </property>
+        <property name="aLevel" type="java.lang.String">
+            <column name="aLevel" length="1">
+            	<comment>专业等级：1-普通 2-资深 3-专家 4-专务</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

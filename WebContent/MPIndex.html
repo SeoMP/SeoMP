@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>主界面</title>
+<script type="text/javascript" src="common/core.js"></script>
+<link rel="shortcut icon" href="common/favicon.ico" type="image/x-icon" />
+<style type="text/css">
+	.panel-title{padding-left:30px;font-size:15px;}
+</style>
+</head>
+<body>
+	
+	<div id="index" class="easyui-layout" data-options="fit:true" style="width:100%;">   
+	    <div data-options="region:'north',split:false" style="height:10%;overflow:hidden;">
+	    	
+	    </div>       
+	    <div data-options="region:'west',title:'导航菜单',split:true" style="width:15%;overflow:hidden;">
+	    	<iframe id="navMenus" frameborder="0" style="width:100%;height:100%;"></iframe>
+	    </div>   
+	    <div data-options="region:'center'" style="overflow:hidden;">
+	    	<iframe id="busiMain" frameborder="0" style="width:100%;height:100%;"></iframe>
+	    </div>
+	    <div data-options="region:'south',split:false" style="height:5%;">
+	    	<marquee onMouseOver="this.stop()" onMouseOut="this.start()" 
+	    		direction="left" scrolldelay="4" scrollamount="3" style="margin-top:1%;">
+				<font style="font-size:13px;color:blue;">
+				===========================MP----MP----MP测试！===================================
+				</font>
+			</marquee>
+	    </div>    
+	</div>
+	<script type="text/javascript">
+		$("#busiMain").attr("src",contextPath+"html/busiMain.html");
+		$("#navMenus").attr("src",contextPath+"html/navMenus.html");
+		/*var url = contextPath+"common/test.action?timestamp="+new Date().getTime();
+		 $.ajax({
+			url:url,
+			data:{},
+			success:function(text){
+				$.messager.alert('提示',JSON.stringify(text),"info");
+			},
+			error:function(msg){
+				//$("#error").html(JSON.stringify(msg));
+				$.messager.alert('提示',JSON.stringify(msg),"error");
+			}
+		});  */
+	</script>
+</body>
+</html>

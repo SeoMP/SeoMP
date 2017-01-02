@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script type="text/javascript" src="../common/core.js"></script>
+<title>主页面</title>
+</head>
+<body>
+	<div id="busiMain" class="easyui-tabs" style="width:100%;" data-options="fit:true,narrow:true,border:false">   
+	    <div title="主页" >   
+	            
+	    </div>     
+	</div> 
+	<script type="text/javascript">
+		$(function() {
+			var url = contextPath+"html/userManage/userdisplay.html";
+			var content = '<iframe id=\"userMain\" frameborder=\"0\" src=\"'+url+'\" style=\"width:100%;height:99%;\"></iframe>';
+			$("#busiMain").tabs("add",{
+				id:'userManage',
+				title:'用户查询',
+				content:content
+				//href:url
+			});
+		});
+	</script> 
+</body>
+</html>

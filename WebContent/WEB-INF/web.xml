@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>test</display-name>
+  <welcome-file-list>
+    <welcome-file>MPLogin.html</welcome-file>
+  </welcome-file-list>
+  <!-- 设置根目录 -->  
+  <context-param>    
+      <param-name>webAppRootKey</param-name>    
+      <param-value>MP.root</param-value>    
+  </context-param>
+  <!-- spring配置文件 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/spring.xml</param-value>
+  </context-param>
+  <!-- log4j配置文件路径-->
+  <context-param>
+  	<param-name>log4jConfigLocation</param-name>
+  	<param-value>classpath:config/log4j.properties</param-value>
+  </context-param>
+  <!-- log4j配置文件刷新周期（ms） -->
+  <context-param>
+  	<param-name>log4jRefreshInterval</param-name>
+  	<param-value>600000</param-value>
+  </context-param>
+  <!-- 使用 Log4jConfigListener 监听器初始化 Log4J 日志引擎  -->
+  <listener>
+  	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <!-- 载入Spring ApplicationContext ，即初始化Spring容器-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- HttpSession监听 -->
+  <listener>
+  	<listener-class>com.seoo.listener.SessionManageListener</listener-class>
+  </listener>
+  <!-- 请求、响应编码格式设置 -->
+  <filter>
+  	<filter-name>EncodingFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>forceEncoding</param-name>
+  		<param-value>true</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>EncodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 静态资源加载缓存（js css jsp....） -->
+  
+  
+  
+  <!-- struct2核心控制器设置 -->
+  <filter>
+    <filter-name>struct2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>struct2</filter-name>
+    <url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  <!-- 验证码生成 -->
+  <servlet>
+  	<servlet-name>CreateVerifCode</servlet-name>
+  	<servlet-class>com.seoo.servlet.VerifCodeCreateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CreateVerifCode</servlet-name>
+  	<url-pattern>/CreateVerifCode</url-pattern>
+  </servlet-mapping>
+  <!-- Session生存周期配置 -->
+  <session-config>
+  	<session-timeout>30</session-timeout>
+  </session-config>
+</web-app>
