@@ -2,6 +2,7 @@ package com.seoo.exception;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -18,12 +19,12 @@ public class Test {
 	private static final Logger log = Logger.getLogger(Test.class);
 	public static void main(String[] args) throws Exception{
 		// TODO Auto-generated method stub
-		/*try {
+		try {
 			te("");
-		} catch (CommonException e) {
+		} catch (WebException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		/*String c = "d*";
 		System.out.println(c.codePointAt(c.length()-1));*/
 		//Constants constants = new Constants(Serializable.class);
@@ -33,10 +34,10 @@ public class Test {
 		/*System.out.println(ex.getClass().getName());*/
 	}
 
-	/*private static void te(String str) throws CommonException{
+	private static void te(String str) throws CommonException{
 		if(StringUtils.isBlank(str))
-			throw new CommonException("账务信息查询","001","该卡本期无人民币未出账单！");
-	}*/
+			throw new CommonException("登录模块","LG001","登录失败！");
+	}
 	
 	public static boolean isRollBackOn(Throwable ex) throws Exception{
 		Method method = UserDealServiceImpl.class.getMethod("saveOneUser");

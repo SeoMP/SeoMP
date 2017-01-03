@@ -4,7 +4,6 @@
  <struts>
  	<package name="common" extends="struts-default" namespace="/common">
  		<action name="loginDeal" class="loginDealAction" method="login">
- 			<!-- <result>/WEB-INF/jsp/userManage/UsersQueryMain.jsp</result> -->
  		</action>
  	</package>
  </struts>

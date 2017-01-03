@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSONObject;
 import com.seoo.baseAction.BaseAction;
-import com.seoo.exception.CommonException;
+import com.seoo.exception.WebException;
 import com.seoo.service.UserDealService;
 
 public class LoginDealAction extends BaseAction{
@@ -17,7 +17,7 @@ public class LoginDealAction extends BaseAction{
 	private static final Logger log = Logger.getLogger(LoginDealAction.class);
 	private UserDealService userBiz;
 
-	public void login(){
+	public void login() throws WebException{
 		super.init();
 		Map<String,String>  param = new HashMap<String,String>();
 		param.put("account",request.getParameter("userId"));
@@ -25,12 +25,7 @@ public class LoginDealAction extends BaseAction{
 		param.put("validCode",request.getParameter("validCode"));
 		param.put("captcha", (String)httpSession.getAttribute("captcha"));
 		if(log.isInfoEnabled())log.info("参数："+JSONObject.toJSONString(param));
-		try {
-			userBiz.loginDeal(param);
-		} catch (CommonException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		userBiz.loginDeal(param);
 	}
 
 	public UserDealService getUserBiz() {
