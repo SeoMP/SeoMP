@@ -11,7 +11,7 @@ tr,th,td {
 .div1{width:100%;overflow:hidden;margin-top:20px;}
 .div11{width:50%;float:left;text-align:right;font-size:130%;}
 .div12{width:50%;float:left;text-align:left;font-size:130%;}
-.div121{width:20%;float:left;text-align:left;}
+.div121{width:30%;float:left;text-align:left;}
 .div122{width:30%;float:left;text-align:left;}
 .div2{width:100%;margin-top:5%;overflow:hidden;}
 .div21{width:70%;float:left;text-align:left;}
@@ -21,5 +21,5 @@ tr,th,td {
 /**/
 .validatebox-invalid,.textbox-invalid {
 	border-color: #ffa8a8;
-  background-color: #fff;
+  	background-color: #fff;
 }

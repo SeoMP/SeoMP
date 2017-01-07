@@ -12,18 +12,18 @@
 </head>
 <body>
 	<div class="easyui-panel" title="用户登录" data-options="fit:true">	
-        <form id="loginForm" method="post">
+        <form id="loginForm">
 			<div class="div1">
 				<div class="div11">用户名：</div>
 				<div class="div12">
-					<input name="userId" class="easyui-textbox" prompt="请输入用户名" width="50px;" 
+					<input id="userId" name="userId" class="easyui-textbox" prompt="请输入用户名" width="50px;" 
 						data-options="required:true">
 				</div>
 			</div>
 			<div class="div1">
 				<div class="div11">密码：</div>
 				<div class="div12">
-					<input name="password" class="easyui-textbox" type="password" prompt="请输入密码" width="50px;"
+					<input id="password"  name="password" class="easyui-textbox" type="password" prompt="请输入密码" width="50px;"
 						data-options="required:true">
 				</div>
 			</div>
@@ -31,7 +31,7 @@
 				<div class="div11">验证码：</div>
 				<div class="div12">
 					<div class="div121">
-						<input name="validCode" class="easyui-textbox" type="password" prompt="请输入验证码" width="50px;"
+						<input id="validCode" name="validCode" class="easyui-textbox"  prompt="请输入验证码" width="50px;"
 							data-options="required:true">
 					</div>
 					<div class="div122">
@@ -57,20 +57,52 @@
 			createValiCode();
 			/* 登录处理 */
 			$("#loginBtn").bind('click',function(){
-				$("#loginForm").form('submit',{
-					url:contextPath+"common/loginDeal.action?timestamp="+new Date().getTime(),
-					onSubmit:function(){
-						return $(this).form('validate');
-					},
-					success:function(){
-						//全屏设置
-						if(window.name != 'MPFullIndex'){
-							window.open(contextPath+"MPIndex.html",'MPFullIndex',
-									'fullscreen=yes,location=no,menubar=no,titlebar=no,toolbar=no,resizable=no,status=no');
-							window.close();
-						} 
-					}
-				});
+				var loginUrl = contextPath+"common/LoginInDeal.action?timestamp="+new Date().getTime();
+				if($("#loginForm").form('validate')){
+					var data = $("#loginForm").serializeObject();
+					$.ajax({
+						url:loginUrl,
+						type:'POST',
+						data:data,
+						timeout:30000,
+						success:function(){
+							//登录成功，全屏设置
+							if(window.name != 'MPFullIndex'){
+								window.open(contextPath+"MPIndex.html",'MPFullIndex',
+										'fullscreen=yes,location=no,menubar=no,titlebar=no,toolbar=no,resizable=no,status=no');
+								window.close();
+							}
+						},
+						error:function(xhr){
+						  var responseText = xhr.responseText;
+						  top.$.messager.alert('提示',responseText,"",function(){
+							  setTimeout(createValiCode,1000);
+						  });
+						  /* if(!responseText){
+							  top.$.messager.alert('提示',"平台异常！","",function(){
+								  setTimeout(createValiCode,1000);
+							  });
+							  return;
+						  } 
+						  var ex = responseText.split("CommonException")[1];
+						  var errorMsg = ex.substring(ex.indexOf("[")+1,ex.indexOf("]")); 
+						  top.$.messager.alert('提示',errorMsg,"",function(){
+							  setTimeout(createValiCode,1000);
+						  }); */ 
+						  /* var error = JSON.parse(responseText);
+						  if(error.ECODE == "E001"){
+							  top.$.messager.alert('提示',error.EMSG);
+							  setTimeout(function(){
+								  window.location.href = contextPath+"MPLogin.html";
+							  },2000);
+						  }
+						   */
+						},
+						complete:function(){
+							
+						}
+					});
+				}
 			});
 		});
 	</script> 

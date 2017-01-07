@@ -41,4 +41,9 @@ public class UserDealServiceImpl implements UserDealService {
 		user.setaLevel("4");
 		dao.save(user);
 	}
+	@Override
+	public void saveLoginOutRecord() {
+		// TODO Auto-generated method stub
+		
+	}
 }

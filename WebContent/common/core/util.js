@@ -1,4 +1,29 @@
 /**
+ * 添加window属性：JSON工具，兼容浏览器不支持window.JSON
+ */
+window.JSON = window.JSON || JSON;
+/**
+ * 扩展jqery对象方法，添加form表单序列化方法
+ */
+$.fn.extend({
+	serializeObject : function(){
+		var data = {};
+		$.each($(this).serializeArray(),function(index,json){
+			var key = json.name;
+			var value = $.trim(json.value) || "";
+			if(data[key] === undefined){
+				data[key] = value;
+			}else{
+				if(value){
+					data[key] = data[key]+","+value;
+				}
+			}
+		});
+		return data;
+	}
+});
+
+/**
  *格式化日期：目前支持9种格式 
  */
 Date.formatDate = function(date,format){

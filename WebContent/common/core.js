@@ -1,4 +1,6 @@
-﻿
+﻿/**
+ * 获取当前工程中指定js的绝对路径
+ */
 var __CreateJSPath = function (js) {
     var scripts = document.getElementsByTagName("script");
     var path = "";
@@ -21,7 +23,9 @@ var __CreateJSPath = function (js) {
     }
     return path;
 }
-
+/**
+ * 获取当前工程的根路径
+ */
 var __CreateRootPath = function(){
 	var href = top.location.href;
     href = href.split("#")[0];
@@ -33,13 +37,12 @@ var __CreateRootPath = function(){
 }
 var basePath = __CreateJSPath("core.js");	
 var contextPath = __CreateRootPath();
-//引入相关文件
+//同步方式引入相关文件，在文档流打开，且html未渲染前执行
 document.write('<script src="' + basePath + 'easyui/jquery.min.js" type="text/javascript"></sc' + 'ript>');
-document.write('<script src="' + basePath + 'easyui/jquery.easyui.min.js" type="text/javascript" ></sc' + 'ript>');
-document.write('<script src="' + basePath + 'core/date.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<script src="' + basePath + 'core/json2.js" type="text/javascript" ></sc' + 'ript>');
+document.write('<script src="' + basePath + 'easyui/jquery.easyui.min.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<script src="' + basePath + 'easyui/locale/easyui-lang-zh_CN.js" type="text/javascript" ></sc' + 'ript>');
+document.write('<script src="' + basePath + 'core/util.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<link href="' + basePath + 'easyui/themes/default/easyui.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="' + basePath + 'easyui/themes/icon.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="'+basePath + 'easyui/themes/common.css" rel="stylesheet" type="text/css"/>');
-window.JSON = window.JSON || JSON;
