@@ -1,5 +1,5 @@
 /**
- * 添加window属性：JSON工具，兼容浏览器不支持window.JSON
+ * 添加window属性：JSON工具，兼容某些浏览器不支持window.JSON
  */
 window.JSON = window.JSON || JSON;
 /**
