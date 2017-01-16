@@ -10,14 +10,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title></title>
-<script type="text/javascript" src="<%=request.getContextPath() %>/common/core.js"></script>
+<%-- <script type="text/javascript" src="<%=request.getContextPath() %>/common/core.js"></script> --%>
 </head>
 <body>
 	<div id="error" style="color:red;font-size:20px;text-align:center;">
-		
+		<%=throwable.toString() %>
 	</div>
-	<script type="text/javascript">
-		<%-- $("#error").html("<%=errorMsg %>"); --%>
-	</script> 
+	
 </body>
 </html>

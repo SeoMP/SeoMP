@@ -46,9 +46,6 @@
 			</a>
         </div>
     </div>
-    <div id="win" class="easyui-window" title="My Window" style="width:600px;height:400px"   
-        data-options="iconCls:'icon-save',modal:true">   
-	</div>  
 	<script type="text/javascript">
 		$(function(){
 			/* 生成验证码 */
@@ -76,7 +73,7 @@
 								window.close();
 							}
 						},
-						error:function(xhr){
+						error:function(xhr){	
 						  var responseText = xhr.responseText;
 						  top.$.messager.alert('提示',responseText,"",function(){
 							  setTimeout(createValiCode,1000);

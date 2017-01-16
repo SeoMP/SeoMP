@@ -22,6 +22,11 @@ $.fn.extend({
 		return data;
 	}
 });
+/*字符串对应的数据库长度(varchar/char)*/
+String.prototype.dbLen = function(){
+	var temp = this.replace(/[^\\x00-\\xff]/g,"&&");
+	return temp.length;
+}
 
 /**
  *格式化日期：目前支持9种格式 
