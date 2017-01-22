@@ -73,18 +73,9 @@
     <servlet-name>CreateVerifCode</servlet-name>
     <servlet-class>com.seoo.servlet.VerifCodeCreateServlet</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>SpringDispatcher</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<load-on-startup>1</load-on-startup>
-  </servlet>
   <servlet-mapping>
     <servlet-name>CreateVerifCode</servlet-name>
     <url-pattern>/CreateVerifCode</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>SpringDispatcher</servlet-name>
-  	<url-pattern>/rs/*</url-pattern>
   </servlet-mapping>
   <!-- session时效配置 -->
   <session-config>

@@ -31,20 +31,16 @@ String.prototype.dbLen = function(){
 /**
  *格式化日期：目前支持9种格式 
  */
-Date.formatDate = function(date,format){
-	var dateFormats = [
-		"yyyy-MM-dd","yyyyMMdd",
-		"dd/MM/yyyy","yyyy/MM/dd",
-		"yyyy-MM-dd HH:mm:ss",
-		"yyyyMMddHHmmss",
-		"HH:mm:ss.SSS","HH:mm:ss",
-		"yyyy-MM-dd HH:mm:ss.SSS"
-	];
+$mp.dateFormats = [
+	"yyyy-MM-dd","yyyyMMdd","dd/MM/yyyy","yyyy/MM/dd","yyyy-MM-dd HH:mm:ss","yyyyMMddHHmmss",
+	"HH:mm:ss.SSS","HH:mm:ss","yyyy-MM-dd HH:mm:ss.SSS"
+];
+$mp.dateFormat = function(date,format){
 	var isDate = Object.prototype.toString.call(date) == "[object Date]";
 	var isString = Object.prototype.toString.call(format) == "[object String]";
 	if(isDate && isString){//检查类型是否正确
 		//检查目标格式是否支持
-		var formats = ","+dateFormats.join(",")+",";
+		var formats = ","+$mp.dateFormats.join(",")+",";
 		if(formats.indexOf(","+format+",") > -1){
 			var parts = {};
 			parts["yyyy"] = date.getFullYear();//年
@@ -72,3 +68,10 @@ Date.formatDate = function(date,format){
 	}
 	return "";
 }; 
+
+/**
+ *将字符串解析为日期对象 
+ */
+$mp.dateParse = function(dateStr){
+	
+};

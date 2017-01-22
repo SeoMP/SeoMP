@@ -1,6 +1,8 @@
 package com.seoo.exception;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 public class WebException extends Exception {
 	private static final long serialVersionUID = 1L;
@@ -69,12 +71,13 @@ public class WebException extends Exception {
 	
 	public String toString(){
 		defaultDeal();
-		StringBuffer sbf = new StringBuffer();
-		sbf.append("[");
-		sbf.append("moduleName:"+this.moduleName);
-		sbf.append(",key:"+this.key);
-		sbf.append(",errorMsg:"+this.errorMsg);
-		sbf.append("]");
-		return sbf.toString();
+		return 	new
+				ToStringBuilder(this,
+				ToStringStyle.SHORT_PREFIX_STYLE,
+				new StringBuffer(16))
+				.append("moduleName",this.moduleName)
+				.append("key",this.key)
+				.append("errorMsg",this.errorMsg)
+				.toString();
 	}
 }

@@ -5,6 +5,7 @@
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>登录界面</title>
 <script type="text/javascript" src="common/core.js"></script>
+<script type="text/javascript" src="js/login/logindeal.js"></script>
 <link rel="shortcut icon" href="common/favicon.ico" type="image/x-icon" />
 <style type="text/css">
 	.panel-title{font-size:120%;}
@@ -45,66 +46,7 @@
 				<span class="lonOrRegSp">登录</span>
 			</a>
         </div>
+        <div id="errorMsg"></div>
     </div>
-	<script type="text/javascript">
-		$(function(){
-			/* 生成验证码 */
-			var createValiCode = function(){
-				var url = contextPath+"CreateVerifCode?timestamp="+new Date().getTime();
-				$("#valiImage").attr("src",url);
-			}
-			$("#valiImage").click(createValiCode);
-			createValiCode();
-			/* 登录处理 */
-			$("#loginBtn").bind('click',function(){
-				var loginUrl = contextPath+"common/LoginInDeal.action?timestamp="+new Date().getTime();
-				if($("#loginForm").form('validate')){
-					var data = $("#loginForm").serializeObject();
-					$.ajax({
-						url:loginUrl,
-						type:'POST',
-						data:data,
-						timeout:30000,
-						success:function(){
-							//登录成功，全屏设置
-							if(window.name != 'MPFullIndex'){
-								window.open(contextPath+"MPIndex.html",'MPFullIndex',
-										'fullscreen=yes,location=no,menubar=no,titlebar=no,toolbar=no,resizable=no,status=no');
-								window.close();
-							}
-						},
-						error:function(xhr){	
-						  var responseText = xhr.responseText;
-						  top.$.messager.alert('提示',responseText,"",function(){
-							  setTimeout(createValiCode,1000);
-						  });
-						  /* if(!responseText){
-							  top.$.messager.alert('提示',"平台异常！","",function(){
-								  setTimeout(createValiCode,1000);
-							  });
-							  return;
-						  } 
-						  var ex = responseText.split("CommonException")[1];
-						  var errorMsg = ex.substring(ex.indexOf("[")+1,ex.indexOf("]")); 
-						  top.$.messager.alert('提示',errorMsg,"",function(){
-							  setTimeout(createValiCode,1000);
-						  }); */ 
-						  /* var error = JSON.parse(responseText);
-						  if(error.ECODE == "E001"){
-							  top.$.messager.alert('提示',error.EMSG);
-							  setTimeout(function(){
-								  window.location.href = contextPath+"MPLogin.html";
-							  },2000);
-						  }
-						   */
-						},
-						complete:function(){
-							
-						}
-					});
-				}
-			});
-		});
-	</script> 
 </body>
 </html>

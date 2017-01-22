@@ -19,19 +19,20 @@ public class Test {
 	private static final Logger log = Logger.getLogger(Test.class);
 	public static void main(String[] args) throws Exception{
 		// TODO Auto-generated method stub
-		try {
+		/*try {
 			te("");
 		} catch (WebException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*String c = "d*";
-		System.out.println(c.codePointAt(c.length()-1));*/
+		String c = "d*";
+		System.out.println(c.codePointAt(c.length()-1));
 		//Constants constants = new Constants(Serializable.class);
 		//System.out.println(JSONObject.toJSONString(constants.getFieldCache()));
 		Throwable ex = new NumberFormatException();
-		log.info("针对异常"+ex.getClass().getName()+"，是否需要回滚："+isRollBackOn(ex));
+		log.info("针对异常"+ex.getClass().getName()+"，是否需要回滚："+isRollBackOn(ex));*/
 		/*System.out.println(ex.getClass().getName());*/
+		
 	}
 
 	private static void te(String str) throws CommonException{

@@ -44,6 +44,6 @@ public class UserDealServiceImpl implements UserDealService {
 	@Override
 	public void saveLoginOutRecord() {
 		// TODO Auto-generated method stub
-		
+		System.out.println("会话超时，记录登出信息！");
 	}
 }

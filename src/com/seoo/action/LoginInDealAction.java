@@ -3,11 +3,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.seoo.baseAction.BaseAction;
 import com.seoo.exception.WebException;
 import com.seoo.service.UserDealService;
+import com.seoo.service.impl.UserDealServiceImpl;
 
 public class LoginInDealAction extends BaseAction{
 	/**

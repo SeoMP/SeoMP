@@ -1,0 +1,8 @@
+<!-- spring框架AOP使用JDK动态代理，只能对实现了接口的类实现动态代理，而不能针对类。故service和dao层使用接口式编程
+		CGLIB是针对类实现代理，（主要生成一个子类，覆盖其中的方法）
+		因为是继承，所以该类或方法最好不要声明成final的类... 	配置中加上
+    <aop:aspectj-autoproxy proxy-target-class="true"/> -->
+    　   <!-- spring动态代理的配置
+    	1.使用aop配置： <aop:config proxy-target-class="false"> </aop:config> 
+    	2. aspectj配置： <aop:aspectj-autoproxy proxy-target-class="true"/> 
+    	3. 事务annotation配置： <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/> -->

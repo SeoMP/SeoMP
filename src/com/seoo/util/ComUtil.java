@@ -141,6 +141,37 @@ public class ComUtil {
 		  return sbu.toString();
 	  }
 	  
+	  /**
+	   * 针对公共异常信息进行转换
+	   * @param exceptionMsg 异常信息：格式CommonException[moduleName=LOGIN,key=003,errorMsg=验证码输入有误！] 
+	   * @return
+	   */
+	  public static String exMsgConvert(String exceptionMsg){
+		StringBuffer sbf = new StringBuffer();
+		if(exceptionMsg.contains("[") && exceptionMsg.contains("]")){
+			exceptionMsg = exceptionMsg.substring(exceptionMsg.indexOf("[")+1,exceptionMsg.indexOf("]"));
+			String[] msgs = exceptionMsg.split(",");
+			for(String msg : msgs){
+				if(msg.contains("key")){
+					sbf.append("错误代码：");
+				}else if(msg.contains("errorMsg")){
+					sbf.append("详细错误信息：");
+				}else{
+					continue;
+				}
+				String[] values = msg.split("=");
+				if(values.length == 2){
+					sbf.append(values[1]);
+				}
+				sbf.append("</br>");
+			}
+		}
+		if(isBlank(sbf.toString())){
+			sbf.append("平台异常！");
+		}
+		return sbf.toString();  
+	  }
+	  
 	  public static void main(String[] args){
 		  BigDecimal yuan = new BigDecimal("-10.1255").divide(new BigDecimal("1"));
 		  //四舍五入，保留n位小数
