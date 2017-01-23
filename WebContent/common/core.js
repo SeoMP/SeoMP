@@ -39,7 +39,9 @@ var basePath = __CreateJSPath("core.js");
 var contextPath = __CreateRootPath();
 //同步方式引入相关文件，在文档流打开，且html未渲染前执行
 document.write('<script src="' + basePath + 'easyui/jquery.min.js" type="text/javascript"></sc' + 'ript>');
-document.write('<script src="' + basePath + 'core/json2.js" type="text/javascript" ></sc' + 'ript>');
+if(!window.JSON){
+	document.write('<script src="' + basePath + 'core/json2.js" type="text/javascript" ></sc' + 'ript>'); 
+}
 document.write('<script src="' + basePath + 'easyui/jquery.easyui.min.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<script src="' + basePath + 'easyui/locale/easyui-lang-zh_CN.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<script src="' + basePath + 'core/contextFramework.js" type="text/javascript" ></sc' + 'ript>');
@@ -47,3 +49,4 @@ document.write('<script src="' + basePath + 'core/extend.js" type="text/javascri
 document.write('<link href="' + basePath + 'easyui/themes/default/easyui.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="' + basePath + 'easyui/themes/icon.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="'+basePath + 'easyui/themes/common.css" rel="stylesheet" type="text/css"/>');
+document.write('<script src="' + basePath + 'core/load.js" type="text/javascript" ></sc' + 'ript>');

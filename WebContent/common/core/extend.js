@@ -1,8 +1,4 @@
 /**
- * 添加window属性：JSON工具，兼容某些浏览器不支持window.JSON
- */
-window.JSON = window.JSON || JSON;
-/**
  * 扩展jqery对象方法，添加form表单序列化方法
  */
 $.fn.extend({
@@ -67,11 +63,4 @@ $mp.dateFormat = function(date,format){
 		}
 	}
 	return "";
-}; 
-
-/**
- *将字符串解析为日期对象 
- */
-$mp.dateParse = function(dateStr){
-	
 };

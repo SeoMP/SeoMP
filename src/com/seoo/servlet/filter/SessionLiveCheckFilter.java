@@ -44,27 +44,18 @@ public class SessionLiveCheckFilter extends OncePerRequestFilter {
 		HttpSession session = request.getSession(false);
 		if(session != null){
 			TblCommonUser user = (TblCommonUser)session.getAttribute("loginInfo");
-			if(user != null && StringUtils.isNotBlank(user.getaLevel())){
+			if(user != null && StringUtils.isNotBlank(user.getaLoginId())){
 				paramFilterChain.doFilter(request, response);
 				return;
 			}
 		}
+		response.setContentType("text/html");
 		response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);//500错误
 		JSONObject msg = new JSONObject();
-		msg.put("ECODE","E001");
+		msg.put("ECODE","SESSION_INVALID");
 		msg.put("EMSG","会话失效/操作员信息失效，请重新登录！");
-		response.setContentType("text/html");
 		String encoding = StringUtils.isBlank(response.getCharacterEncoding())?"UTF-8":response.getCharacterEncoding();
 		IOUtils.write(msg.toJSONString(), response.getOutputStream(),encoding);
 		response.getOutputStream().close();
 	}
-	
-	/*private boolean contains(String uri){
-		for(String atr : FILTERREQUESTTYPES){
-			if(StringUtils.contains(uri,atr)){
-				return true;
-			}
-		}
-		return false;
-	}*/
 }
