@@ -18,11 +18,11 @@ $(function(){
 				timeout:30000,
 				onSuccess:function(){
 					//登录成功，全屏设置
-					if(window.name != 'MPFullIndex'){
-						window.open(contextPath+"MPIndex.html",'MPFullIndex',
+					window.open(contextPath+"MPIndex.html",'MPFullIndex',
 								'fullscreen=yes,location=no,menubar=no,titlebar=no,toolbar=no,resizable=no,status=no');
-						window.close();
-					}
+					window.opener = null;
+					window.open('','_self');
+					window.close();
 				}
 			});
 		}

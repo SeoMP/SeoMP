@@ -34,7 +34,15 @@
 	<script type="text/javascript">
 		$("#busiMain").attr("src",contextPath+"html/busiMain.html");
 		$("#navMenus").attr("src",contextPath+"html/navMenus.html");
-		/*var url = contextPath+"common/test.action?timestamp="+new Date().getTime();
+		//浏览器关闭事件
+		window.onbeforeunload = function(){
+			event.returnValue = "请确保当前工作已完成！";
+		};
+		window.onunload = function(){
+			alert("清空session");
+		};
+		/*var url = 
+			contextPath+"common/test.action?timestamp="+new Date().getTime();
 		 $.ajax({
 			url:url,
 			data:{},

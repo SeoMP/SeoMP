@@ -33,6 +33,7 @@
 		showErrorMsg:function(errorMsg){
 			top.$.messager.alert('错误提示',errorMsg);
 		}
+		
 	});
 	//基于jquery ajax,自定义ajax
 	$mp.ajax = function (config){
@@ -98,5 +99,5 @@
 		}
 	};
 	//给每个window注册框架对象MP
-	window[$MP] = window[CONTEXTFRAMEWORK] = $mp;
+	window[$MP] = window[CONTEXTFRAMEWORK] = $mp; 
 })(jQuery);
