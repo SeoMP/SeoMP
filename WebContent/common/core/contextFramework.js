@@ -32,29 +32,7 @@
 		/*错误信息展示*/
 		showErrorMsg:function(errorMsg){
 			top.$.messager.alert('错误提示',errorMsg);
-		},
-		/*获取指定日期各部分值的集合:yyyy MM dd HH ....*/
-		getDFParts:function(date){
-			var parts = {};
-			if($.type(date) != "date") throw new TypeError("the parameter date  is not a Date");
-			parts["yyyy"] = date.getFullYear().toString();//年
-			var month = date.getMonth()+1;//月
-			parts["MM"] = month<10?("0"+month):month.toString();
-			var day = date.getDate();//月中的天数
-			parts["dd"] = day<10?("0"+day):day.toString();
-			var hours = date.getHours();//小时
-			parts["HH"] = hours<10?("0"+hours):hours.toString();
-			var minutes = date.getMinutes();//分钟
-			parts["mm"] = minutes<10?("0"+minutes):minutes.toString();
-			var seconds = date.getSeconds();//秒
-			parts["ss"] = seconds<10?("0"+seconds):seconds.toString();
-			var milliseconds = date.getMilliseconds();//毫秒
-			if(milliseconds < 10)milliseconds = "00"+milliseconds;
-			else if(milliseconds < 100)milliseconds = "0"+milliseconds;
-			parts["SSS"] = milliseconds.toString();
-			return parts;
 		}
-		
 	});
 	//基于jquery ajax,自定义ajax
 	$mp.ajax = function (config){
