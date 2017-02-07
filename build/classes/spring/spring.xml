@@ -58,7 +58,7 @@
 				<!-- InnoDB-MySQL5.7的默认存储引擎 -->
 				hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
 				<!-- 是否在控制台hibernate输出的sql -->
-				hibernate.show_sql=true
+				hibernate.show_sql=false
 				<!-- 是否格式化sql -->
 				hibernate.format_sql=true
 				<!-- 是否自动提交 -->
