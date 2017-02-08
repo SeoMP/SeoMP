@@ -114,6 +114,6 @@ public class DateUtil {
 	}
 	
 	public static void main(String[] args){
-		System.out.println(getCurrentDateStr("yyyyMMddHHmmss"));
+		System.out.println(getCurrentDateStr("yyyy-MM-dd HH:mm:ss"));
 	}
 }

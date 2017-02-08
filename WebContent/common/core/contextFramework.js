@@ -32,6 +32,42 @@
 		/*错误信息展示*/
 		showErrorMsg:function(errorMsg){
 			top.$.messager.alert('错误提示',errorMsg);
+		},
+		/*获取指定日期各部分值的集合:yyyy MM dd HH ....*/
+		getDFParts : function(date){
+			var parts = {};
+			if($.type(date) != "date") throw new TypeError("the parameter date  is not a Date");
+			parts["yyyy"] = date.getFullYear().toString();//年
+			var month = date.getMonth()+1;//月
+			parts["MM"] = month<10?("0"+month):month.toString();
+			var day = date.getDate();//月中的天数
+			parts["dd"] = day<10?("0"+day):day.toString();
+			var hours = date.getHours();//小时
+			parts["HH"] = hours<10?("0"+hours):hours.toString();
+			var minutes = date.getMinutes();//分钟
+			parts["mm"] = minutes<10?("0"+minutes):minutes.toString();
+			var seconds = date.getSeconds();//秒
+			parts["ss"] = seconds<10?("0"+seconds):seconds.toString();
+			var milliseconds = date.getMilliseconds();//毫秒
+			if(milliseconds < 10)milliseconds = "00"+milliseconds;
+			else if(milliseconds < 100)milliseconds = "0"+milliseconds;
+			parts["SSS"] = milliseconds.toString();
+			return parts;
+		},
+		/*生成全局流水号*/
+		getGlobalSerNo:function(){
+			var now = new Date();
+			var currentMills = now.getTime();
+			var parts = $mp.getDFParts(now);
+			var serNo8 = parts.yyyy+parts.MM+parts.dd+"-"+parts.HH+parts.mm;
+			var digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";//基数为36
+			var uuid = "-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(each){
+				var index = (currentMills+Math.random()*36)%36 | 0;
+				if(each == 'y')index = index & 0x3 | 0x8;
+				currentMills = Math.floor(currentMills/36);
+				return digits.charAt(index);
+			});
+			return serNo8+uuid;
 		}
 	});
 	//基于jquery ajax,自定义ajax
@@ -43,7 +79,7 @@
 			//方法重写
 			$.extend(config,{
 				beforeSend:function(xhr){
-					xhr.setRequestHeader("globalSerNo","999");//全局流水号
+					xhr.setRequestHeader("globalSerNo",$mp.getGlobalSerNo());//全局流水号
 				},
 				complete : function(xhr){
 					$mp.closeMaskBox(mask);//关闭ajax加载框
